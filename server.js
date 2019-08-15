@@ -1,8 +1,15 @@
 // can't use the import syntax without implementing something like babble or typescript or something like that. Otherwise we have to use this syntax to bring in modules which is called 'common J.S.' when we use react it actually uses E6 modules which is that import syntax.
 const express = require('express');
+const connectDB = require('./config/db');
 
 // initializing express into a variable called 'app'
 const app = express();
+
+// Connect Database
+connectDB();
+
+// Init Middleware
+app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) =>
   res.json({ message: 'Welcome to the ContactKeeper API...' })
